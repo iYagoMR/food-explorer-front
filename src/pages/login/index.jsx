@@ -1,20 +1,16 @@
 import { Button } from '../../components/Button';
 import { ButtonText } from '../../components/ButtonText';
 import { Input } from '../../components/Input';
-
-import logo from '../../assets/logo.png'
+import { Brand } from '../../components/Brand';
 
 import { Link } from 'react-router-dom';
 
-import { Container, Brand, Form } from './styles';
+import { Container, Form } from './styles';
 
 export function Login(){
     return(
         <Container>
-            <Brand>
-                <img src={logo} alt="Food explorer logo" />
-                <h1>food explorer</h1>
-            </Brand>
+            <Brand width={43}/>
 
             <Form>
                 

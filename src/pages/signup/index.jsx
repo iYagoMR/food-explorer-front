@@ -1,35 +1,32 @@
 import { Button } from '../../components/Button';
 import { ButtonText } from '../../components/ButtonText';
 import { Input } from '../../components/Input';
-
-import logo from '../../assets/logo.png'
+import { Brand } from '../../components/Brand';
 
 import { Link } from 'react-router-dom';
 
-import { Container, Brand, Form } from './styles';
+import { Container, Form } from './styles';
 
-export function Login(){
+export function SignUp(){
     return(
         <Container>
-            <Brand>
-                <img src={logo} alt="Food explorer logo" />
-                <h1>food explorer</h1>
-            </Brand>
+            <Brand width={43}/>
 
             <Form>
-                
                 <Input 
                     placeholder="Exemplo: exemplo@exemplo.com.br"
                     type="text"
                     label="Email"
                     // onChange={e => setEmail(e.target.value)}
                 />
+
                 <Input  
                     placeholder="No mínimo 6 caracteres"
                     type="password"
                     label="Senha"
                     // onChange={e => setPassword(e.target.value)}
                 />
+
                 <Input  
                     placeholder="No mínimo 6 caracteres"
                     type="password"
