@@ -13,6 +13,9 @@ export const Container = styled.div`
         height: 40px;
         display: flex;
 
+        gap: 20px;
+        align-items: center;
+
         padding: 12px 16px;
         
         background: ${({theme}) => theme.COLORS.DARK_900};
@@ -37,6 +40,7 @@ export const Container = styled.div`
 
         > svg {
             margin-left: 16px;
+            scale: 1.6;
         }
     }
 

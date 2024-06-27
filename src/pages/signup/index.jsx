@@ -10,7 +10,7 @@ import { Container, Form } from './styles';
 export function SignUp(){
     return(
         <Container>
-            <Brand width={43}/>
+            <Brand width={43} height={43} fontSize={37}/>
 
             <Form>
                 <Input 
