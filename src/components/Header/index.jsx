@@ -1,4 +1,4 @@
-import { Container, Receipt, HambMenu } from './styles';
+import { Container, Receipt, HambMenu, Logout } from './styles';
 
 import { IoMenuSharp } from "react-icons/io5";
 import { PiReceipt } from "react-icons/pi";
@@ -9,9 +9,18 @@ import { Input } from '../../components/Input'
 import { Brand } from '../Brand';
 
 import { useState } from 'react';
+import { useAuth } from '../../hooks/auth'
+import { useNavigate } from 'react-router-dom';
 
 export function Header(){
     const [ menu, setMenu ] = useState(false);
+    const { signOut, user } = useAuth();
+    const navigation = useNavigate();
+
+    function handleSignOut(){
+        navigation("/");
+        signOut();
+    }
 
     const toggleMenu = () => {
         setMenu((open) => !open);
@@ -46,7 +55,11 @@ export function Header(){
                         icon={CiSearch}
                     />
                     <ul>
-                        <li>Sign out</li>
+                        <li>
+                            <Logout onClick={handleSignOut}>
+                                Sign out
+                            </Logout>
+                        </li>
                     </ul>
                 </div>
 

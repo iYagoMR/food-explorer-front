@@ -1,5 +1,6 @@
 import styled from "styled-components";
 
+
 export const Container = styled.div`
     width: 100%;
 
@@ -16,19 +17,19 @@ export const Container = styled.div`
 
     > div {
         display: flex;
+        position: relative;
 
-        gap: 20px;
         align-items: center;
+        justify-content: space-between;
 
         padding: 12px 14px;
         
-        background: ${({theme}) => theme.COLORS.DARK_800};
+        background: ${({theme}) => theme.COLORS.DARK_900};
         
         border: 0;
         border-radius: 8px;
-        
 
-        input{
+        select{
             width: 100%;
 
             color: ${({theme}) => theme.COLORS.LIGHT_400};
@@ -36,16 +37,26 @@ export const Container = styled.div`
             border: none;
 
             font-size: 16px;
-        }
-        input::placeholder {
-            color: ${({ theme }) => theme.COLORS.LIGHT_500};
+
+            appearance: none;
+            /* safari */
+            -webkit-appearance: none;
+            /* other styles for aesthetics */
+            width: 100%;
+            background-color: transparent;
+            border-radius: 0.25rem;
+            cursor: pointer;
         }
 
         > svg {
-            margin-left: 16px;
-            scale: 1.6;
+            position: absolute;
+            top: 50%;
+            right: 1rem;
+            transform: translateY(-50%);
+            pointer-events: none; /* Ensure the icon does not block clicks */
+            color: ${({ theme }) => theme.COLORS.LIGHT_400};
         }
+
     }
 
-    
 `

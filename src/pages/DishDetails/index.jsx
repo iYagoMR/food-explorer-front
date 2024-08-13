@@ -1,0 +1,92 @@
+import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+
+import { Container } from './styles';
+
+import { PageSection } from '../../components/PageSection';
+import { IngredientTag } from '../../components/IngredientTag';
+import { Button } from '../../components/Button';
+import { Header } from '../../components/Header';
+import { Bottom } from '../../components/Bottom';
+
+import picturePlaceholder from '../../assets/plates/Mask group-11.png';
+
+import { AiOutlinePlus, AiOutlineMinus } from "react-icons/ai";
+import { PiReceipt } from "react-icons/pi";
+
+import { api } from '../../services/api';
+
+export function DishDetails(){
+
+    const [ data, setData ] = useState(null);
+
+    const params = useParams();
+
+    const [ quantity, setQuantity ] = useState(1);
+
+    function addQuantity(){
+        setQuantity(prevQuantity => prevQuantity + 1);
+        console.log(quantity);
+    }
+
+    function removeQuantity(){
+        setQuantity(prevQuantity => Math.max(prevQuantity - 1, 0));
+        console.log(quantity);
+    }
+
+    useEffect(() => {
+        async function fetchDish(){
+          const response = await api.get(`/dishes/${params.id}`);
+          setData(response.data);
+        }
+    
+        fetchDish();
+    }, []);
+
+
+    const formattedQuantity = String(quantity).padStart(2, '0');
+
+    return(
+        <Container>
+            <Header/>
+            {
+            data &&
+            <main>
+                <PageSection/>
+                <div className='wrapper'>
+                    <img src={data.picture ? `${api.defaults.baseURL}/files/${data.picture}` : picturePlaceholder} alt="dish picture" />
+                    <div className='dish-description'>
+                        <h1>{data.name}</h1>
+                        <p>
+                            {data.description}
+                        </p>
+                        <div className='ingredients'>
+                        {
+                            data.ingredients && data.ingredients.map(ingredients => (
+                                <IngredientTag 
+                                    key={String(ingredients.id)}
+                                    data={ingredients}
+                                />
+                            ))
+                        }
+                        </div>
+                        <div>
+                            <div className='quantity'>
+                                <button onClick={removeQuantity}><AiOutlineMinus size={27}/></button>
+                                <h4>{formattedQuantity}</h4>
+                                <button onClick={addQuantity}><AiOutlinePlus size={27}/></button>
+                            </div>
+                            <Button 
+                                title="Add"
+                                icon={PiReceipt}
+                                price="14.00"
+                            />
+                        </div>
+                    </div>
+                </div>
+            </main>
+            }
+            <Bottom/>
+        </Container>
+    )
+}

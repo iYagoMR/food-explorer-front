@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 export const Container = styled.div`
     width: 100%;
-
     display: flex;
     flex-direction: column;
     gap: 16px;
@@ -13,37 +12,35 @@ export const Container = styled.div`
         margin-bottom: 8px;
         margin: 0;
     }
-
-    > div {
+    
+    > label {
+        margin: 0;
         display: flex;
+        padding: 12px 32px;
 
-        gap: 20px;
+        cursor: pointer;
+        
+        gap: 8px;
         align-items: center;
-
-        padding: 12px 14px;
+        justify-content: center;
         
         background: ${({theme}) => theme.COLORS.DARK_800};
         
-        border: 0;
         border-radius: 8px;
         
-
-        input{
-            width: 100%;
-
-            color: ${({theme}) => theme.COLORS.LIGHT_400};
-            background: transparent;
-            border: none;
-
-            font-size: 16px;
+        > p{
+            color: ${({theme}) => theme.COLORS.LIGHT_100};
+            font-size: 14px;
+            font-weight: 500;
         }
-        input::placeholder {
-            color: ${({ theme }) => theme.COLORS.LIGHT_500};
+
+        > input{
+            display: none;
         }
 
         > svg {
-            margin-left: 16px;
-            scale: 1.6;
+            font-size: 24px;
+            color: ${({theme}) => theme.COLORS.LIGHT_100};
         }
     }
 

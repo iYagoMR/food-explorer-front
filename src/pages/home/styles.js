@@ -7,12 +7,19 @@ export const Container = styled.div`
     display: flex;
     flex-direction: column;
 
+    overflow-x: hidden;
+
     > main {
         padding: 50px 24px;
 
         display: flex;
         flex-direction: column;
-        gap: 60px;
+
+        > .sections {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
     }
 `
 
@@ -23,6 +30,8 @@ export const Banner = styled.div`
     display: flex;
     padding: 30px 17px 20px 15px;
     position: relative;
+
+    margin-bottom: 60px;
 
     > img {
         position: absolute;
@@ -71,5 +80,7 @@ export const DishSection = styled.div`
     > div {
         display: flex;
         gap: 20px;
+        overflow-y: scroll;
+        padding-bottom: 20px;
     }
 `

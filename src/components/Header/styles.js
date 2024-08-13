@@ -21,8 +21,11 @@ export const Container = styled.div`
         flex-direction: column;
         top: 0;
 
+        background: ${( {theme}) => theme.COLORS.DARK_400};
+
         box-sizing: border-box;
         width: 100%;
+        height: 100vh;
         position: absolute;
         z-index: 2;
 
@@ -69,7 +72,6 @@ export const Container = styled.div`
         border-bottom: 1px solid ${({theme}) => theme.COLORS.DARK_1000};
 
         list-style: none;
-        
     }
 
     .menu.closed { transform: translateY(-20px); pointer-events: none; opacity: 0;}
@@ -107,4 +109,13 @@ export const HambMenu = styled.button`
     align-content: center;
     border: none;
     background: none;
+`
+
+export const Logout = styled.button`
+    border: none;
+    background: none;
+    color: ${( {theme}) => theme.COLORS.LIGHT_100};
+    font-size: 24px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 300;
 `

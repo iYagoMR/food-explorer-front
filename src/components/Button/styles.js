@@ -10,6 +10,15 @@ export const Container = style.button
     font-size: 14px;
     font-weight: 500;
 
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    align-items: center;
+
     padding: 15px 12px;
     height: 48px;
+
+    > button {
+        padding: 0;
+    }
 `
