@@ -5,8 +5,10 @@ import { Container } from './styles';
 export function Bottom(){
     return(
         <Container>
-            <Brand width={27} height={22} fontSize={15} pColor={"#4D585E"}/>
-            <p>© 2023 - All rights reserved</p>
+            <div>
+                <Brand noAdminTag width={2.7} height={2.2} fontSize={1.5} pColor={"#4D585E"}/>
+                <p>© 2023 - All rights reserved</p>
+            </div>
         </Container>
     )
 }

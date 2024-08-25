@@ -2,13 +2,13 @@ import { Container } from "./styles";
 
 import { FaChevronDown } from "react-icons/fa6";
 
-export function SelectInput({label:Label, ...rest}) {
+export function SelectInput({label:Label, options, name, ...rest}) {
     return(
         <Container>
-            <p>{Label}</p>
+            <label htmlFor={name}>{Label}</label>
             <div>
-                <select name="MealtTypes" id="MealtTypes">
-                    <option value="Meal">Meal</option>
+                <select {...rest} name={name} id={name}>
+                    {options}
                 </select>
                 <FaChevronDown/>
             </div>

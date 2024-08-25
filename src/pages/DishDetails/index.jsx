@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 import { Container } from './styles';
 
@@ -14,15 +14,22 @@ import picturePlaceholder from '../../assets/plates/Mask group-11.png';
 import { AiOutlinePlus, AiOutlineMinus } from "react-icons/ai";
 import { PiReceipt } from "react-icons/pi";
 
+import { USER_ROLE } from '../../utils/roles';
+import { useAuth } from '../../hooks/auth';
 import { api } from '../../services/api';
 
 export function DishDetails(){
 
+    const {user} = useAuth();
     const [ data, setData ] = useState(null);
-
+    const navigate = useNavigate();
     const params = useParams();
 
     const [ quantity, setQuantity ] = useState(1);
+
+    function handleEdit(id){
+        navigate(`/edit-dish/${id}`)
+    }
 
     function addQuantity(){
         setQuantity(prevQuantity => prevQuantity + 1);
@@ -70,18 +77,27 @@ export function DishDetails(){
                             ))
                         }
                         </div>
-                        <div>
-                            <div className='quantity'>
-                                <button onClick={removeQuantity}><AiOutlineMinus size={27}/></button>
-                                <h4>{formattedQuantity}</h4>
-                                <button onClick={addQuantity}><AiOutlinePlus size={27}/></button>
+
+                        {[USER_ROLE.CUSTOMER].includes(user.role) &&
+                            <div>
+                                <div className='quantity'>
+                                    <button onClick={removeQuantity}><AiOutlineMinus size={23}/></button>
+                                    <h4>{formattedQuantity}</h4>
+                                    <button onClick={addQuantity}><AiOutlinePlus size={23}/></button>
+                                </div>
+                                <Button 
+                                    title="Add"
+                                    icon={PiReceipt}
+                                    price="14.00"
+                                />
                             </div>
+                        }
+                        {[USER_ROLE.ADMIN].includes(user.role) &&
                             <Button 
-                                title="Add"
-                                icon={PiReceipt}
-                                price="14.00"
+                                title="Edit dish"
+                                onClick={() => handleEdit(data.id)}
                             />
-                        </div>
+                        }
                     </div>
                 </div>
             </main>

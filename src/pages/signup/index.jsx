@@ -37,11 +37,11 @@ export function SignUp(){
 
     return(
         <Container>
-            <Brand width={43} height={43} fontSize={37}/>
+            <Brand width={3} height={3} fontSize={2.5} pColor={"#065E7C"}/>
 
             <Form>
                 <Input 
-                    placeholder="Example: exemplo@exemplo.com.br"
+                    placeholder="Example: jhon@email.com"
                     type="text"
                     label="Email"
                     onChange={e => setEmail(e.target.value)}
@@ -55,20 +55,20 @@ export function SignUp(){
                 />
 
                 <Input  
-                    placeholder="At least 6 characters"
+                    placeholder="At least 3 characters"
                     type="password"
                     label="Password"
                     onChange={e => setPassword(e.target.value)}
                 />
 
                 <Button 
-                    title="Login" 
+                    title="Create account" 
                     onClick={handleSignUp}
                 />
 
                 <Link to="/">
                     <ButtonText
-                        title="Login"
+                        title="I already have an account"
                     />
                 </Link>
 

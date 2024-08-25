@@ -5,7 +5,7 @@ export const Container = styled.p`
     color: ${({ theme }) => theme.COLORS.LIGHT_100};
     
     font-family: 'Poppins', sans-serif;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 500;
     
     padding: 5px 10px;

@@ -8,7 +8,7 @@ export const Container = styled.div`
     flex-direction: column;
     gap: 16px;
 
-    > p{
+    > label{
         color: ${({theme}) => theme.COLORS.LIGHT_400};
         font-size: 16px;
         margin-bottom: 8px;
@@ -22,7 +22,7 @@ export const Container = styled.div`
         align-items: center;
         justify-content: space-between;
 
-        padding: 12px 14px;
+        padding: 15px 20px;
         
         background: ${({theme}) => theme.COLORS.DARK_900};
         

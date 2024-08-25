@@ -7,20 +7,29 @@ export const Container = styled.div`
     flex-direction: column;
     gap: 16px;
 
-    > p{
+    > label{
         color: ${({theme}) => theme.COLORS.LIGHT_400};
         font-size: 16px;
         margin-bottom: 8px;
         margin: 0;
     }
 
-    > div {
+    input::placeholder, textarea::placeholder{
+        color: ${({ theme }) => theme.COLORS.LIGHT_500};
+    }
+
+    textarea{
+        color: ${({theme}) => theme.COLORS.LIGHT_400};
+        font-size: 16px;
+    }
+
+    > div, textarea {
         display: flex;
 
         gap: 20px;
         align-items: center;
 
-        padding: 12px 14px;
+        padding: 15px 20px;
         
         background: ${({theme}) => theme.COLORS.DARK_800};
         
@@ -36,9 +45,6 @@ export const Container = styled.div`
             border: none;
 
             font-size: 16px;
-        }
-        input::placeholder {
-            color: ${({ theme }) => theme.COLORS.LIGHT_500};
         }
 
         > svg {

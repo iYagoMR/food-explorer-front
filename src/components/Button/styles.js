@@ -7,7 +7,7 @@ export const Container = style.button
     color: ${({ theme }) => theme.COLORS.LIGHT_100};
     border: none;
     border-radius: 5px;
-    font-size: 14px;
+    font-size: 18px;
     font-weight: 500;
 
     display: flex;

@@ -12,7 +12,7 @@ export function PageSection({title:Title}){
     }
 
     return(
-        <Container $hasTitle={!!Title}>
+        <Container>
             <a onClick={handleBack}>
                 <MdArrowBackIosNew/>
                 <span>back</span>

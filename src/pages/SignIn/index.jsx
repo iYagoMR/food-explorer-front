@@ -22,10 +22,10 @@ export function SignIn() {
   
     return (
       <Container>
-        <Brand width={43}/>
+        <Brand width={3} height={3} fontSize={2.5} pColor={"#065E7C"}/>
         <Form>
             <Input 
-                placeholder="Exemple: exemple@exemple.com"
+                placeholder="Example: jhon@email.com"
                 type="text"
                 label="Email"
                 onChange={e => setEmail(e.target.value)}
@@ -33,7 +33,7 @@ export function SignIn() {
             <Input  
                 placeholder="At least 6 characters"
                 type="password"
-                label="Senha"
+                label="Password"
                 onChange={e => setPassword(e.target.value)}
             />
 

@@ -17,6 +17,8 @@ export function Home(){
     const [ingredientsSelected, setIngredientsSelected ] = useState([]);
     const [dishes, setDishes] = useState([]);
 
+    const navigate = useNavigate();
+
     function handleDetails(id){
         navigate(`/details/${id}`)
     }
@@ -37,7 +39,7 @@ export function Home(){
                     <img src={BannerImg} alt="banner image showing french macarons, strawberries and bluebeeries" />
                     <div>
                         <h2>Unparalleled flavors</h2>
-                        <p>Feel the care of the preparation<br/>with selected ingredients.</p>
+                        <p>Feel the care of the preparation with selected ingredients.</p>
                     </div>
                 </Banner>
                 <div className='sections'>
@@ -46,7 +48,7 @@ export function Home(){
                         <div>
                         {
                             dishes && dishes
-                                .filter(dish => dish.category == "main")
+                                .filter(dish => dish.category == "meal")
                                 .map(dish => (
                                     <DishCard 
                                         key={String(dish.id)}
@@ -54,12 +56,36 @@ export function Home(){
                                     />
                                 ))
                         }
-                </div>
+                        </div>
                     </DishSection>
                     <DishSection>
-                        <h2>Main dishes</h2>
+                        <h2>Salads</h2>
                         <div>
-
+                            {
+                                dishes && dishes
+                                    .filter(dish => dish.category == "salad")
+                                    .map(dish => (
+                                        <DishCard 
+                                            key={String(dish.id)}
+                                            data={dish}
+                                        />
+                                    ))
+                            }
+                        </div>
+                    </DishSection>
+                    <DishSection>
+                        <h2>Desserts</h2>
+                        <div>
+                            {
+                                dishes && dishes
+                                    .filter(dish => dish.category == "dessert")
+                                    .map(dish => (
+                                        <DishCard 
+                                            key={String(dish.id)}
+                                            data={dish}
+                                        />
+                                    ))
+                            }
                         </div>
                     </DishSection>
                 </div>
