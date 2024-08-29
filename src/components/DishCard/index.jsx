@@ -15,7 +15,7 @@ import { USER_ROLE } from '../../utils/roles';
 import { useAuth } from '../../hooks/auth';
 import { api } from '../../services/api';
 
-export function DishCard({isAdmin, data, ...rest}){
+export function DishCard({isAdmin, data, addDish, ...rest}){
 
     const {user} = useAuth();
     const [ quantity, setQuantity ] = useState(1);
@@ -66,7 +66,7 @@ export function DishCard({isAdmin, data, ...rest}){
                         <h4>{formattedQuantity}</h4>
                         <button onClick={addQuantity}><AiOutlinePlus size={20}/></button>
                     </div>
-                    <Button>
+                    <Button onClick={() => addDish({ ...data, quantity })}>
                         <IoCart size={15}/>
                         Add item
                     </Button>

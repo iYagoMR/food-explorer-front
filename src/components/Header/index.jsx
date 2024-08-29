@@ -18,7 +18,7 @@ import { api } from '../../services/api';
 import { useAuth } from '../../hooks/auth'
 import { useNavigate } from 'react-router-dom';
 
-export function Header(){
+export function Header({ onOpenCart }){
     
     const [searchString, setSearchString] = useState("");
 
@@ -65,7 +65,7 @@ export function Header(){
 
                 {
                     [USER_ROLE.CUSTOMER].includes(user.role) &&
-                    <Receipt type="button">
+                    <Receipt type="button" onClick={onOpenCart}>
                         <span>0</span>
                         <IoCart />
                         <p>Cart <span>(0)</span></p>

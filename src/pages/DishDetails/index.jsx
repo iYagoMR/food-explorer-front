@@ -50,7 +50,6 @@ export function DishDetails(){
         fetchDish();
     }, []);
 
-
     const formattedQuantity = String(quantity).padStart(2, '0');
 
     return(
