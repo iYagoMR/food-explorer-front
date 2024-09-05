@@ -12,29 +12,29 @@ export const Container = styled.div`
         display: flex;
         flex-direction: column;
         gap: 6px;
+        width: 100%;
     }
     .order-description{
         display: flex;
         gap: 12px;
         align-items: center;
+        justify-content: space-between;
     }
-    span,h3{
+    h3{
         color: ${({ theme }) =>  theme.COLORS.LIGHT_100};
-    }
-    span:first-child, h3{
-        font-size: 20px;
+        font-size: 1.5rem;
         font-weight: 500;
     }
-    span:last-child{
+    span{
         color: ${({ theme }) =>  theme.COLORS.LIGHT_400};
-        font-size: 12px;
+        font-size: 1.4rem;
+        min-width: max-content;
     }
-
     button{
         border: none;
         background: none;
         color: ${({ theme }) =>  theme.COLORS.TOMATO_400};
-        font-size: 14px;
+        font-size: 15px;
         width: fit-content;
     }
 

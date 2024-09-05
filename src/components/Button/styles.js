@@ -16,7 +16,6 @@ export const Container = style.button
     align-items: center;
 
     padding: 15px 12px;
-    height: 48px;
 
     > button {
         padding: 0;

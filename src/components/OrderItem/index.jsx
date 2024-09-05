@@ -11,7 +11,7 @@ export function OrderItem({picture, name, quantity, price, onClick}){
             <img src={pictureUrl} alt={`${name} picture`} />
             <div>
                 <div className='order-description'>
-                    <span>{quantity}x</span> <h3>{name}</h3> <span>$ {price}</span>
+                    <h3>{quantity}x {name}</h3> <span>$ {price}</span>
                 </div>
                 <button onClick={onClick}>Remove</button>
             </div>

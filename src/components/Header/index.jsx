@@ -17,27 +17,28 @@ import { useState, useEffect } from 'react';
 import { api } from '../../services/api';
 import { useAuth } from '../../hooks/auth'
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { selectTotalQuantity } from '../../store';
 
 export function Header({ onOpenCart }){
     
     const [searchString, setSearchString] = useState("");
-
     const { signOut, user } = useAuth();
-    
     const [ menu, setMenu ] = useState(false);
 
     const navigate = useNavigate();
+    //Get the quantity of dishes in the cart
+    const totalQuantity = useSelector(selectTotalQuantity);
 
     function handleSignOut(){
         navigate("/");
         signOut();
     }
 
-    function handleSearch(event ){
+    function handleSearch(event){
         if (event.key === 'Enter') {
             toggleMenu();
             navigate(`/search-results/${searchString}`);
-
         }
     }
 
@@ -66,9 +67,9 @@ export function Header({ onOpenCart }){
                 {
                     [USER_ROLE.CUSTOMER].includes(user.role) &&
                     <Receipt type="button" onClick={onOpenCart}>
-                        <span>0</span>
+                        <span>{totalQuantity}</span>
                         <IoCart />
-                        <p>Cart <span>(0)</span></p>
+                        <p>Cart <span>({totalQuantity})</span></p>
                     </Receipt>
                 }
                 {

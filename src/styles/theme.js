@@ -24,7 +24,7 @@ export default {
 
         TOMATO_100: "#750310",
         TOMATO_200: "#92000E",
-        TOMAOTO_300: "#AB222E",
+        TOMATO_300: "#AB222E",
         TOMATO_400: "#AB4D55",
 
         CARROT: "#FBA94C",

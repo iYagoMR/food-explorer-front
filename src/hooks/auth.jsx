@@ -5,6 +5,8 @@ import {
   useEffect
 } from 'react';
 
+import { jwtDecode } from "jwt-decode";
+
 const AuthContext = createContext({});
 
 import { api } from "../services/api";
@@ -31,7 +33,7 @@ function AuthProvider({ children }) {
         alert("Não foi possível entrar.");
       }
     }
-  };
+  }
 
   function signOut() {
     localStorage.removeItem("@estock:token");
@@ -40,18 +42,30 @@ function AuthProvider({ children }) {
     setData({});
   }
 
+  function isTokenExpired(token) {
+    if (!token) return true;
+  
+    const decoded = jwtDecode(token);
+    const currentTime = Math.floor(Date.now() / 1000); // Current time in seconds
+  
+    return decoded.exp < currentTime; // Returns true if expired, false otherwise
+  }
 
   useEffect(() => {
     const token = localStorage.getItem("@estock:token");
     const user = localStorage.getItem("@estock:user");
-
+  
     if (token && user) {
-      api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-
-      setData({
-        token,
-        user: JSON.parse(user)
-      });
+      if (isTokenExpired(token)) {
+        signOut(); // If the token is expired, sign out the user
+      } else {
+        api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+  
+        setData({
+          token,
+          user: JSON.parse(user)
+        });
+      }
     }
   }, []);
 

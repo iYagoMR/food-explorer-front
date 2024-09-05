@@ -17,6 +17,7 @@ import { api } from '../../services/api'
 
 import { PiUploadSimpleFill } from "react-icons/pi";
 
+
 export function EditDish(){
 
     const [ name, setName ] = useState("");
@@ -86,6 +87,7 @@ export function EditDish(){
 
     return(
         <Container>
+
             <Header/>
             {
                 data &&

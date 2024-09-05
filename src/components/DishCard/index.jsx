@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { add } from '../../store';
 
 import { Container, Button, Title, DishPicture } from './styles';
 
@@ -15,13 +17,20 @@ import { USER_ROLE } from '../../utils/roles';
 import { useAuth } from '../../hooks/auth';
 import { api } from '../../services/api';
 
-export function DishCard({isAdmin, data, addDish, ...rest}){
+export function DishCard({isAdmin, data, ...rest}){
 
     const {user} = useAuth();
     const [ quantity, setQuantity ] = useState(1);
+
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const pictureUrl = data.picture ? `${api.defaults.baseURL}/files/${data.picture}` : picturePlaceholder;
+
+    //handle add new dish to the cart
+    function handleAddToCart(dish){
+        dispatch(add(dish));
+    }
 
     function handleDetails(id){
         navigate(`/dish-details/${id}`)
@@ -33,12 +42,10 @@ export function DishCard({isAdmin, data, addDish, ...rest}){
 
     function addQuantity(){
         setQuantity(prevQuantity => prevQuantity + 1);
-        console.log(quantity);
     }
 
     function removeQuantity(){
         setQuantity(prevQuantity => Math.max(prevQuantity - 1, 0));
-        console.log(quantity);
     }
 
     const formattedQuantity = String(quantity).padStart(2, '0');
@@ -66,7 +73,7 @@ export function DishCard({isAdmin, data, addDish, ...rest}){
                         <h4>{formattedQuantity}</h4>
                         <button onClick={addQuantity}><AiOutlinePlus size={20}/></button>
                     </div>
-                    <Button onClick={() => addDish({ ...data, quantity })}>
+                    <Button onClick={() => handleAddToCart({ ...data, quantity })}>
                         <IoCart size={15}/>
                         Add item
                     </Button>

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { DEVICE_BREAKPOINTS } from '../../styles/deviceBreakpoints';
 
 export const Container = styled.aside`
     position: fixed;
@@ -14,7 +15,8 @@ export const Container = styled.aside`
 
     transform: translateX(100%);
     right: 0;
-    transition: transform 0.3s ease-in-out;
+    opacity: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
 
     .close{
         width: fit-content;
@@ -58,7 +60,7 @@ export const Container = styled.aside`
         >p{
             color: ${({ theme }) =>  theme.COLORS.LIGHT_100};
             font-weight: 500;
-            font-size: 22px;
+            font-size: 2rem;
         }
 
         > button{
@@ -68,8 +70,11 @@ export const Container = styled.aside`
 
     &[data-cart-is-open="true"]{
         display: flex;
-
+        opacity: 1;
         transform: translateX(0);
     }
 
+    @media(min-width: ${DEVICE_BREAKPOINTS.MD}){
+        width: 500px;
+    }
 `

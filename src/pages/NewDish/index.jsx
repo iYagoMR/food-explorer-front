@@ -18,7 +18,7 @@ import { useNavigate } from 'react-router-dom';
 
 export function NewDish(){
     const [ name, setName ] = useState("");
-    const [ price, setPrice ] = useState("");
+    const [ price, setPrice ] = useState(0);
     const [ description, setDescription ] = useState("");
     const [ category, setCategory ] = useState("meal");
 

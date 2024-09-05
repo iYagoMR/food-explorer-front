@@ -15,12 +15,15 @@ export default createGlobalStyle`
             font-size: 12px;
         }
         @media (min-width: ${DEVICE_BREAKPOINTS.LG}){
-            font-size: 14px;
+            font-size: 13px;
         }
         @media (max-width: ${DEVICE_BREAKPOINTS.SM}){
             font-size: 9px;
         }
-        
+    }
+
+    #root > div{
+        min-height: 100vh;
     }
 
     body {
@@ -48,10 +51,6 @@ export default createGlobalStyle`
 
     button:hover, a:hover {
         filter: brightness(0.9);
-    }
-
-    .page-wrapper{
-        padding: 0 28px;
     }
 
 `

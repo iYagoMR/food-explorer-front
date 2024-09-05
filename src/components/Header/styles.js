@@ -185,7 +185,8 @@ export const Receipt = styled.button`
         font-family: "Poppins", sans-serif;
         right: -10px;
         top: -7px;
-        padding: 1px 6px;
+        padding: 0px 6px;
+
         border-radius: 15px;
     }
     > p {

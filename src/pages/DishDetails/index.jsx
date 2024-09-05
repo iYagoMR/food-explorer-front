@@ -8,6 +8,7 @@ import { IngredientTag } from '../../components/IngredientTag';
 import { Button } from '../../components/Button';
 import { Header } from '../../components/Header';
 import { Bottom } from '../../components/Bottom';
+import { Cart } from '../../components/Cart';
 
 import picturePlaceholder from '../../assets/plates/Mask group-11.png';
 
@@ -24,6 +25,7 @@ export function DishDetails(){
     const [ data, setData ] = useState(null);
     const navigate = useNavigate();
     const params = useParams();
+    const [ cartIsOpen, setCartIsOpen ] = useState(false);
 
     const [ quantity, setQuantity ] = useState(1);
 
@@ -54,7 +56,11 @@ export function DishDetails(){
 
     return(
         <Container>
-            <Header/>
+            <Cart 
+                cartIsOpen={cartIsOpen} 
+                onCloseCart={() => setCartIsOpen(false)}
+            />
+            <Header onOpenCart={() => setCartIsOpen(true)}/>
             {
             data &&
             <main>

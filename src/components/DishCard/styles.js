@@ -69,6 +69,7 @@ export const Container = styled.div`
     }
 
     .dish-desc{
+        margin-bottom: auto;
         max-width: 80%;
         text-align: center;
         display: none;
