@@ -1,9 +1,11 @@
 import { configureStore, createSlice } from '@reduxjs/toolkit';
 import { saveState, loadState } from './storage';
 
+const initialState = loadState() || [];
+
 const todoSlice = createSlice({
     name: 'todo',
-    initialState: loadState() || [],
+    initialState,
 
     reducers: {
         add: (state, action) => {
@@ -19,7 +21,8 @@ const todoSlice = createSlice({
         },
         remove: (state, action) => {
             return state.filter(item => item.id !== action.payload.id)
-        }
+        },
+        clearStorage: () => [],
     }
 })
 
@@ -42,4 +45,4 @@ export const selectTotalPrice = (state) => {
     return state.todo.reduce((totalPrice, item) => totalPrice + (item.price * item.quantity), 0);
 };
 
-export const { add, remove } = todoSlice.actions;
+export const { add, remove, clearStorage } = todoSlice.actions;

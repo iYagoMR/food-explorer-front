@@ -19,20 +19,28 @@ import { useAuth } from '../../hooks/auth'
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { selectTotalQuantity } from '../../store';
+import { clearStorage } from '../../store'
+
+import { useDispatch } from 'react-redux';
 
 export function Header({ onOpenCart }){
-    
     const [searchString, setSearchString] = useState("");
     const { signOut, user } = useAuth();
     const [ menu, setMenu ] = useState(false);
 
+    const dispatch = useDispatch();
     const navigate = useNavigate();
     //Get the quantity of dishes in the cart
     const totalQuantity = useSelector(selectTotalQuantity);
 
+    function handleStorageClear(){
+        dispatch(clearStorage())
+    }
+
     function handleSignOut(){
-        navigate("/");
+        handleStorageClear();
         signOut();
+        navigate("/");
     }
 
     function handleSearch(event){

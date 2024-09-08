@@ -7,6 +7,7 @@ import { api } from '../../services/api';
 import { DishCard } from '../../components/DishCard';
 import { Bottom } from '../../components/Bottom'
 import { Header } from '../../components/Header';
+import { FaArrowRight } from "react-icons/fa";
 
 import BannerImg from '../../assets/banner-img.png'
 
@@ -35,6 +36,7 @@ export function Home(){
                 cartIsOpen={cartIsOpen} 
                 onCloseCart={() => setCartIsOpen(false)}
             />
+            <FaArrowRight/>
             <Header onOpenCart={() => setCartIsOpen(true)}/>
             <main>
                 <Banner>

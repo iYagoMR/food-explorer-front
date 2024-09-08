@@ -4,13 +4,17 @@ import { IoIosArrowForward } from "react-icons/io";
 
 import { useState } from 'react';
 
-export function ContentTab({tabNames, tabContents, initialActiveIndex = 0}){
+export function ContentTab({tabNames, tabContents, onTabChange, initialActiveIndex = 0}){
     // State to manage the active tab index
     const [activeIndex, setActiveIndex] = useState(initialActiveIndex);
 
     // Function to handle tab switching
     const handleTabClick = (index) => {
         setActiveIndex(index); // Set the active index to the clicked tab
+        
+        if (onTabChange){
+            onTabChange(index);
+        }
     };
 
     return(

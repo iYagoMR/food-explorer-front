@@ -81,8 +81,7 @@ export function NewDish(){
             navigate("/")
             alert("New dish created successfully");
         }catch(error){
-            alert(error);
-            //alert("Failed to create new dish. Please try again.");
+            alert("Failed to create new dish. Please try again.");
         }
     }
 

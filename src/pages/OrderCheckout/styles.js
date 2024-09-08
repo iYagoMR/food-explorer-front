@@ -20,16 +20,31 @@ export const Container = styled.div`
         justify-content: space-between;
         align-items: center;
 
-        > div{
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
+        h3{
+            font-size: 16px;
+            color: ${({ theme }) => theme.COLORS.LIGHT_100};
+            font-weight: 400;
+        }
 
-            h3{
-                font-size: 16px;
-                color: ${({ theme }) => theme.COLORS.LIGHT_100};
-                font-weight: 400;
+        > .address{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+
+            >div{
+                display: flex;
+                flex-direction: column;
+                gap: 6px;
             }
+
+            button{
+                color: ${({ theme }) => theme.COLORS.TOMATO_400};
+                padding: 0;
+                border: none;
+                background: none;
+            }
+
             span{
                 font-size: 14px;
                 color: ${({ theme }) => theme.COLORS.LIGHT_400};
@@ -37,12 +52,19 @@ export const Container = styled.div`
             }
         }
 
-        > button{
-            color: ${({ theme }) => theme.COLORS.TOMATO_400};
+        > .add{
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
             padding: 0;
             border: none;
             background: none;
+
+            svg{
+                color: ${({ theme }) => theme.COLORS.LIGHT_100};
+            }
         }
+
     }
 
     .takeout {

@@ -1,5 +1,6 @@
 export const saveState = (state) => {
     try {
+        if (!state) return; // Do not save if state is undefined or null
         const serializedState = JSON.stringify(state);
         localStorage.setItem('reduxState', serializedState);
     } catch (error) {
