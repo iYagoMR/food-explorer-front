@@ -5,7 +5,7 @@ import { add } from '../../store';
 
 import { Container, Button, Title, DishPicture } from './styles';
 
-import { MdFavoriteBorder } from "react-icons/md";
+import { MdFavoriteBorder, MdFavorite } from "react-icons/md";
 import { IoIosArrowForward } from "react-icons/io";
 import { AiOutlinePlus, AiOutlineMinus } from "react-icons/ai";
 import { IoCart } from "react-icons/io5";
@@ -17,10 +17,11 @@ import { USER_ROLE } from '../../utils/roles';
 import { useAuth } from '../../hooks/auth';
 import { api } from '../../services/api';
 
-export function DishCard({isAdmin, data, ...rest}){
+export function DishCard({isAdmin, data, addFavBtn, ...rest}){
 
     const {user} = useAuth();
     const [ quantity, setQuantity ] = useState(1);
+    const [ isFavorite, setIsFavorite ] = useState();
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -48,12 +49,54 @@ export function DishCard({isAdmin, data, ...rest}){
         setQuantity(prevQuantity => Math.max(prevQuantity - 1, 0));
     }
 
+    const handleToggleFavorite = () => {
+        setIsFavorite((prevFavorite) => !prevFavorite); // Toggle the state\
+        addFavBtn();
+    };
+
+    useEffect(() => {
+        async function fetchDish(){
+
+            let response;
+            try{
+                response = await api.get(`userFavorites/${data.id}`);
+            }
+            catch(error){
+                // Handle the 404 error specifically
+                if (error.response && error.response.status === 404) {
+                    response = null; // If dish is not found, set favDish to null
+                } else {
+                    throw error; // Re-throw other errors to be handled by the outer catch
+                }
+            }
+
+            if(response){
+                setIsFavorite(true);
+            }
+            else{
+                setIsFavorite(false);
+            }
+        }
+        fetchDish();
+    }, [data.id]);
+
     const formattedQuantity = String(quantity).padStart(2, '0');
 
     return(
         <Container isAdmin={isAdmin} {...rest}>
-            {[USER_ROLE.CUSTOMER].includes(user.role) && <button><MdFavoriteBorder size="2.3rem"/></button>}
-            {[USER_ROLE.ADMIN].includes(user.role) && <button onClick={() => handleEdit(data.id)}><GoPencil size="2.3rem"/></button>}
+            {[USER_ROLE.CUSTOMER].includes(user.role) && <button onClick={handleToggleFavorite}>
+                {
+                    isFavorite ? (
+                        <MdFavorite size="2.3rem" />
+                    ) : (
+                        <MdFavoriteBorder size="2.3rem" />
+                    )
+                }
+            </button>}
+
+            {[USER_ROLE.ADMIN].includes(user.role) && <button onClick={() => handleEdit(data.id)}>
+                <GoPencil size="2.3rem"/>
+            </button>}
             
             <DishPicture onClick={() => handleDetails(data.id)}>
                 <img src={pictureUrl} alt={`${data.name}'s picture`} />

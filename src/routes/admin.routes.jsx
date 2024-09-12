@@ -4,6 +4,7 @@ import { Home } from '../pages/home';
 import { DishDetails } from '../pages/DishDetails';
 import { SearchResults } from '../pages/SearchResults';
 import { NewDish } from '../pages/NewDish';
+import { OrderHistory } from '../pages/OrderHistory';
 import { EditDish } from '../pages/EditDish';
 import { NotFound } from '../pages/NotFound';
 
@@ -13,6 +14,7 @@ export function AdminRoutes() {
             <Route path="/" element={ <Home/> } />
             <Route path="/dish-details/:id" element={ <DishDetails/> } />
             <Route path="/new-dish" element={ <NewDish/> } />
+            <Route path="/order-history" element={ <OrderHistory/> } />
             <Route path="/edit-dish/:id" element={ <EditDish/> } />
             <Route path="/search-results/:searchString" element={ <SearchResults/> } />
             

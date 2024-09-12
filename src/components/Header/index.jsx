@@ -6,6 +6,7 @@ import { PiReceipt } from "react-icons/pi";
 import { PiSignOut } from "react-icons/pi";
 import { IoIosClose } from "react-icons/io";
 import { CiSearch } from "react-icons/ci";
+import { MdFavorite } from "react-icons/md";
 
 import { Input } from '../../components/Input'
 import { ButtonText } from '../../components/ButtonText'
@@ -45,7 +46,9 @@ export function Header({ onOpenCart }){
 
     function handleSearch(event){
         if (event.key === 'Enter') {
-            toggleMenu();
+            if(menu){
+                toggleMenu();
+            }
             navigate(`/search-results/${searchString}`);
         }
     }
@@ -66,6 +69,7 @@ export function Header({ onOpenCart }){
                 <Brand width={2} height={2} fontSize={1.5} pColor={"#065E7C"}/>
 
                 <Input
+                    className="search-bar"
                     placeholder="Search for dishes or ingredients"
                     onChange={e => setSearchString(e.target.value)}
                     onKeyDown={handleSearch} // Triggers search only on Enter key press
@@ -74,21 +78,27 @@ export function Header({ onOpenCart }){
 
                 {
                     [USER_ROLE.CUSTOMER].includes(user.role) &&
-                    <Receipt type="button" onClick={onOpenCart}>
-                        <span>{totalQuantity}</span>
-                        <IoCart />
-                        <p>Cart <span>({totalQuantity})</span></p>
-                    </Receipt>
+                    <div className='header-btns'>
+                        <Receipt type="button" onClick={onOpenCart}>
+                            <span>{totalQuantity}</span>
+                            <IoCart />
+                            <p>Cart <span>({totalQuantity})</span></p>
+                        </Receipt>
+                        <button onClick={() => navigate(`/favorites`)}>Favorites</button>
+                        <button onClick={() => navigate(`/order-history`)}>Orders</button>
+                        
+                    </div>
                 }
                 {
                     [USER_ROLE.ADMIN].includes(user.role) &&
-                    <>
+                    <div className='header-btns'>
                         <Button
                             className="new-dish"
                             title="New dish"
                             onClick={() => navigate("/new-dish")}
                         />
-                    </>
+                        <button onClick={() => navigate(`/order-history`)}>Orders</button>
+                    </div>
                 }
                 <button className='sign-out' onClick={handleSignOut}>
                     <PiSignOut/>
@@ -114,21 +124,47 @@ export function Header({ onOpenCart }){
                             {
                                 //[USER_ROLE.ADMIN, USER_ROLE.CUSTOMER].includes(user.role) &&
                                 user.role === USER_ROLE.ADMIN &&
-                                <li>
-                                    <ButtonText
-                                        onClick={() => navigate('/new-dish')}
-                                        title="New dish"
-                                    />  
-                                </li>
+                                
+                                <>
+                                    <li>
+                                        <ButtonText
+                                            onClick={() => navigate('/new-dish')}
+                                            title="New dish"
+                                        />  
+                                    </li>
+                                    <li>
+                                        <ButtonText
+                                            onClick={() => navigate('/order-history')}
+                                            title="Orders"
+                                        />
+                                    </li>
+                                </>
                             }
-                        
-                        <li>
-                            <ButtonText
-                                onClick={handleSignOut}
-                                title="Logout"
-                            />    
-                        </li>
+                            {
+                                user.role === USER_ROLE.CUSTOMER &&
+                                <>
+                                    <li>
+                                        <ButtonText
+                                            onClick={() => navigate('/favorites')}
+                                            title="Favorites"
+                                        />   
+                                    </li>
+                                    <li>
+                                        <ButtonText
+                                            onClick={() => navigate('/order-history')}
+                                            title="Order history"
+                                        />
+                                    </li>
+                                </>
+                            }
+                            <li>
+                                <ButtonText
+                                    onClick={handleSignOut}
+                                    title="Logout"
+                                />    
+                            </li>
                     </ul>
+                         
                 </div>
 
             </div>

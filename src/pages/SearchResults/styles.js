@@ -9,7 +9,7 @@ export const Container = styled.div`
     main {
         max-width: ${DEVICE_WIDTH.MAX};
         padding: 0 28px;
-        margin: auto;
+        margin: 0 auto;
         width: 100%;
     }
 

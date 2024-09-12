@@ -8,7 +8,7 @@ export const Container = styled.div`
 
     gap: 12px;
 
-    margin-bottom: 16px;
+    margin-bottom: 22px;
 
     > a {
         color: ${({ theme }) => theme.COLORS.LIGHT_100};

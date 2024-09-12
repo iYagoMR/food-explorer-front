@@ -213,8 +213,6 @@ export function OrderCheckout(){
 
             const response = await api.post(`/addresses`, data);
 
-            console.log(response.data)
-
             const newAddress = response.data;
 
             setAddressData(newAddress);
@@ -256,7 +254,7 @@ export function OrderCheckout(){
     
     async function handleOrderCheckout(){
 
-        if(!orderItems.length === 0){
+        if(orderItems.length == 0){
             return alert("You need to have at least one item in your order");
         }
 

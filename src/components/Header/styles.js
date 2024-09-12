@@ -34,8 +34,24 @@ export const Container = styled.div`
             display: none;
         }
 
-        > div{
+        div:nth-child(3){
             display: none;
+        }
+
+    }
+
+    .header-btns {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+
+        > button:nth-child(2), > button:nth-child(3){
+            display: none;
+
+            border: none;
+            background: none;
+            font-size: 1.4rem;
+            color: ${({ theme }) => theme.COLORS.LIGHT_100};
         }
     }
     
@@ -125,10 +141,17 @@ export const Container = styled.div`
         transform: translateY(-100%);
     }
 
-
-
     @media (min-width: ${DEVICE_BREAKPOINTS.LG}){
         .header {
+
+            .header-btns{
+                min-width: fit-content;
+
+                > button:nth-child(2), > button:nth-child(3){
+                    display: flex;
+                }
+            }
+            
             align-items: center;
 
             gap: 32px;
@@ -139,11 +162,11 @@ export const Container = styled.div`
 
             .new-dish{
                 display: block;
-                max-width: 200px;
+                min-width: 150px;
                 font-size: 1.2rem;
             }
 
-            > div{
+            div:nth-child(3){
                 gap: 0;
                 display: block;
             }

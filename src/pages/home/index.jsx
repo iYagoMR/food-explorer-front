@@ -30,13 +30,43 @@ export function Home(){
         fetchDishes();
     }, [ingredientsSelected, search]);
 
+    async function handleFavoriteToggle(id){
+
+        try{
+            const dish = await api.get(`/dishes/${id}`);
+
+            let favDish;
+            try {
+                // Try to get the favorite dish
+                favDish = await api.get(`/userFavorites/${dish.data.id}`);
+            } catch (error) {
+                // Handle the 404 error specifically
+                if (error.response && error.response.status === 404) {
+                    favDish = null; // If dish is not found, set favDish to null
+                } else {
+                    throw error; // Re-throw other errors to be handled by the outer catch
+                }
+            }
+
+            if(favDish == null){
+                await api.post(`/userFavorites/${dish.data.id}`);
+            }
+            else{
+                await api.delete(`/userFavorites/${favDish.data.id}`);  
+            }
+        }
+        catch(error){
+            alert("Something went wrong while trying to add or remove favorite dish.")
+            console.log(error)
+        }
+    }
+
     return(
         <Container>
             <Cart 
                 cartIsOpen={cartIsOpen} 
                 onCloseCart={() => setCartIsOpen(false)}
             />
-            <FaArrowRight/>
             <Header onOpenCart={() => setCartIsOpen(true)}/>
             <main>
                 <Banner>
@@ -55,6 +85,7 @@ export function Home(){
                                 .filter(dish => dish.category == "meal")
                                 .map(dish => (
                                     <DishCard 
+                                        addFavBtn={() => handleFavoriteToggle(dish.id)}
                                         key={String(dish.id)}
                                         data={dish}
                                     />
@@ -70,6 +101,7 @@ export function Home(){
                                     .filter(dish => dish.category == "salad")
                                     .map(dish => (
                                         <DishCard 
+                                            addFavBtn={() => handleFavoriteToggle(dish.id)}
                                             key={String(dish.id)}
                                             data={dish}
                                         />
@@ -85,6 +117,7 @@ export function Home(){
                                     .filter(dish => dish.category == "dessert")
                                     .map(dish => (
                                         <DishCard 
+                                            addFavBtn={() => handleFavoriteToggle(dish.id)}
                                             key={String(dish.id)}
                                             data={dish}
                                         />
