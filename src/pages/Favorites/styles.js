@@ -8,6 +8,8 @@ export const Container = styled.div`
     > main{
         max-width: ${DEVICE_WIDTH.MAX};
         padding: 50px 24px;
+        display: flex;
+        flex-direction: column;
         margin: 0 auto;
         width: 100%;
 
@@ -17,6 +19,8 @@ export const Container = styled.div`
             flex-direction: row;
 
             gap: 32px;
+
+
         }
 
         .fav-dish-card{
@@ -26,11 +30,15 @@ export const Container = styled.div`
             
             background: ${({ theme }) => theme.COLORS.DARK_200};
             border: none;
-            border-radius: 8px;
+            border-radius: 16px;
 
-            min-width: 250px;
-            max-width: 350px;
-            
+            padding: 20px 25px;
+            min-width: 290px;
+            max-width: 400px;
+
+            @media( max-width:659px ){
+                max-width: unset;
+            }
 
             > div{
                 display: flex;

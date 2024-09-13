@@ -14,7 +14,7 @@ export const Container = styled.div`
 
     padding: 24PX;
     gap: 13.5px;
-    border-radius: 8px;
+    border-radius: 16px;
 
     background: ${({ theme }) => theme.COLORS.DARK_200};
 

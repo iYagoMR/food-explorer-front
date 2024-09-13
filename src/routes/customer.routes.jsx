@@ -15,7 +15,8 @@ export function CustomerRoutes() {
             <Route path="/dish-details/:id" element={ <DishDetails/> } />
             <Route path="/favorites" element={ <Favorites/> } />
             <Route path="/order-history" element={ <OrderHistory/> } />
-            <Route path="/search-results/:searchString" element={ <SearchResults/> } />
+            {/* String in the search should be optional */}
+            <Route path="/search-results/:searchString?" element={ <SearchResults/> } />
             <Route path="/order-checkout" element={ <OrderCheckout/> } />
 
             <Route path='*' exact={true} element={<NotFound/>} />

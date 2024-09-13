@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 import { Container } from './styles';
 
@@ -9,6 +10,7 @@ import { Button } from '../../components/Button';
 import { Header } from '../../components/Header';
 import { Bottom } from '../../components/Bottom';
 import { Cart } from '../../components/Cart';
+import { add } from '../../store';
 
 import picturePlaceholder from '../../assets/plates/Mask group-11.png';
 
@@ -23,11 +25,18 @@ export function DishDetails(){
 
     const {user} = useAuth();
     const [ data, setData ] = useState(null);
+    const [ cartIsOpen, setCartIsOpen ] = useState(false);
+    const [ quantity, setQuantity ] = useState(1);
+
     const navigate = useNavigate();
     const params = useParams();
-    const [ cartIsOpen, setCartIsOpen ] = useState(false);
+    const dispatch = useDispatch();
 
-    const [ quantity, setQuantity ] = useState(1);
+
+    //handle add new dish to the cart
+    function handleAddToCart(dish){
+        dispatch(add(dish));
+    }
 
     function handleEdit(id){
         navigate(`/edit-dish/${id}`)
@@ -93,7 +102,8 @@ export function DishDetails(){
                                 <Button 
                                     title="Add"
                                     icon={PiReceipt}
-                                    price="14.00"
+                                    price={data.price}
+                                    onClick={() => handleAddToCart({ ...data, quantity })}
                                 />
                             </div>
                         }

@@ -34,7 +34,6 @@ export const Banner = styled.div`
     position: relative;
     min-height: 100px;
 
-    margin-bottom: 60px;
 
     > img {
         position: absolute;

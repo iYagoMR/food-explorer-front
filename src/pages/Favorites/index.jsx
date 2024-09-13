@@ -17,6 +17,10 @@ export function Favorites(){
 
     const navigate = useNavigate();
 
+    function handleDishDetails(dishId){
+        navigate(`/dish-details/${dishId}`)
+    }
+
     useEffect(() => {
         async function fetchDishes(){
             const response = await api.get(`/userFavorites`);
@@ -52,7 +56,7 @@ export function Favorites(){
                                 <div key={dish.id} className='fav-dish-card'>
                                     <img src={dish.picture ? `${api.defaults.baseURL}/files/${dish.picture}` : picturePlaceholder} alt="" />
                                     <div>
-                                        <button>{dish.name} <IoIosArrowRoundForward/></button>
+                                        <button onClick={() => handleDishDetails(dish.id)}>{dish.name} <IoIosArrowRoundForward/></button>
                                         <button onClick={() => removeFromFavs(dish.id, dish)}>Remove from favorites</button>
                                     </div>
                                 </div>

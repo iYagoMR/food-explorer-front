@@ -49,6 +49,7 @@ export function Header({ onOpenCart }){
             if(menu){
                 toggleMenu();
             }
+
             navigate(`/search-results/${searchString}`);
         }
     }

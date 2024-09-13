@@ -27,12 +27,15 @@ export default createGlobalStyle`
     }
 
     body {
-        background-color: ${({ theme }) =>  theme.COLORS.DARK_400};
+        background-color: #010c11;
         color: ${({ theme }) => theme.COLORS.WHITE};
         
 
         -webkit-font-smoothing: antialiased;
-        
+    }
+
+    main {
+        gap: 40px;
     }
     
     body, input, button, textarea {

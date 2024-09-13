@@ -23,8 +23,14 @@ export function SearchResults(){
 
     useEffect(() => {
         async function fetchDishes(){
-            const response = await api.get(`/dishes?name=${searchString}&ingredient=${searchString}`);
-            //const response = await api.get(`/dishes?name=${params.searchString}`);
+            let response;
+
+            response = await api.get(`/dishes`);
+
+            if(searchString != ""){
+                response = await api.get(`/dishes?name=${searchString}&ingredient=${searchString}`);
+            }
+
             setDishes(response.data);
         }
         
