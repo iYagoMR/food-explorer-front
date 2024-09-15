@@ -24,8 +24,8 @@ export function OrderCheckout(){
     const totalPrice = useSelector(selectTotalPrice);
 
     //Address related
-    const [ addModalIsOpen, setAddModalIsOpen ] = useState(false)
-    const [ editModalIsOpen, setEditModalIsOpen ] = useState(false)
+    const [ addModalIsOpen, setAddModalIsOpen ] = useState(false);
+    const [ editModalIsOpen, setEditModalIsOpen ] = useState(false);
     const [ orderAddress, setOrderAddress ] = useState("");
     const [ orderCity, setOrderCity ] = useState("");
     const [ orderState, setOrderState ] = useState("");
