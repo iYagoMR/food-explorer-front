@@ -46,7 +46,7 @@ export function Favorites(){
                 cartIsOpen={cartIsOpen} 
                 onCloseCart={() => setCartIsOpen(false)}
             />
-            <Header/>
+            <Header onOpenCart={() => setCartIsOpen(true)}/>
             <main>
                 <PageSection title="My favorites"/>
                 <div className='dishes'>

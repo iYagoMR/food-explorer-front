@@ -70,8 +70,11 @@ export function OrderHistory() {
 
     return (
         <Container>
-            <Cart />
-            <Header />
+            <Cart 
+                cartIsOpen={cartIsOpen} 
+                onCloseCart={() => setCartIsOpen(false)}
+            />
+            <Header onOpenCart={() => setCartIsOpen(true)}/>
             <main>
                 <PageSection title="Order history" />
 
