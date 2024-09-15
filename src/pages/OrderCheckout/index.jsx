@@ -17,6 +17,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import { Cart } from '../../components/Cart';
 
 export function OrderCheckout(){
     const [ paymentMethod, setPaymentMethod ] = useState("Credit");
@@ -29,6 +30,7 @@ export function OrderCheckout(){
     const [ orderCity, setOrderCity ] = useState("");
     const [ orderState, setOrderState ] = useState("");
     const [ addressData, setAddressData ] = useState(null);
+    const [ cartIsOpen, setCartIsOpen ] = useState(false);
     const [ isTakeout, setIsTakeout ] = useState(false);
 
     const navigate = useNavigate();
@@ -293,8 +295,11 @@ export function OrderCheckout(){
                 modalIsOpen={editModalIsOpen}
                 btnClick={handleAddressUpdate}
             />
-
-            <Header/>
+            <Cart 
+                cartIsOpen={cartIsOpen} 
+                onCloseCart={() => setCartIsOpen(false)}
+            />
+            <Header onOpenCart={() => setCartIsOpen(true)}/>
             <main>
                 <PageSection
                     title="Checkout"
