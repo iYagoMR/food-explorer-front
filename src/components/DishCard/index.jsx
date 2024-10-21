@@ -28,10 +28,10 @@ export function DishCard({isAdmin, data, addFavBtn, ...rest}){
 
     let pictureUrl;
     if(data.user_id == null){
-        pictureUrl = `/src/${data.picture}`;
+        pictureUrl = `https://food-explorer-lambdafunc.s3.us-east-1.amazonaws.com/plates/${data.picture}`;
     }
     else{
-        pictureUrl = data.picture ? `${api.defaults.baseURL}/files/${data.picture}` : picturePlaceholder;
+        pictureUrl = data.picture ? `https://food-explorer-lambdafunc.s3.us-east-1.amazonaws.com/plates/${data.picture}` : picturePlaceholder;
     }
 
     //handle add new dish to the cart
