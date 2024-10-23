@@ -87,7 +87,7 @@ export function DishDetails(){
             <main>
                 <PageSection/>
                 <div className='wrapper'>
-                    <img src={`/` + pictureUrl} alt="dish picture" />
+                    <img src={pictureUrl} alt="dish picture" />
                     <div className='dish-description'>
                         <h1>{data.name}</h1>
                         <p>
