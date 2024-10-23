@@ -25,4 +25,4 @@ export function Input({label:Label, icon:Icon, isTextArea, name, ...rest}) {
 
         </Container>
     )
-}
+}   

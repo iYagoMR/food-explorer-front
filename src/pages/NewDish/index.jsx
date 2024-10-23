@@ -82,6 +82,7 @@ export function NewDish(){
             alert("New dish created successfully");
         }catch(error){
             alert("Failed to create new dish. Please try again.");
+            console.log(error);
         }
     }
 
