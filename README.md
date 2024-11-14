@@ -1,4 +1,3 @@
-**Food Explorer: A DoorDash-like App**
 Food Explorer is a simple, DoorDash-like application I developed for my portfolio, showcasing both front-end and back-end development skills. The app allows users to browse food options, add items to their cart, and proceed to checkout, similar to popular food delivery services.
 
 **How to Run the Project Locally:**
