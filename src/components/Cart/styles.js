@@ -45,7 +45,7 @@ export const Container = styled.aside`
             gap: 30px;
 
             height: fit-content;
-            overflow-y: scroll;
+            overflow-y: auto;
             max-height: 380px;
         }
 
